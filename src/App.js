@@ -1,26 +1,39 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import axios from 'axios'
+import List from "./Components/List.jsx"
 
 class App extends Component {
+  //create a state to store data
+  constructor(props){
+    super(props)
+    this.state = {
+      recipes: [],
+      store: []
+    }
+  }
+  //lifecycle hook to grab the jason and format it into variables
+  componentDidMount(){
+    axios.get('https://www.food2fork.com/api/search?key=ce8876558ef123b507f130ccc0d973cd')
+    .then(json => json.data.recipes.map(recipes => (
+    {
+      f2f_url: recipes.f2f_url,
+      image_url: recipes.image_url,
+      publisher: recipes.publisher,
+      publisher_url: recipes.publisher_url,
+      recipe_id: recipes.recipe_id,
+      rank: recipes.social_rank,
+      source_url: recipes.source_url,
+      title: recipes.title
+    })))
+    .then(newData => this.setState({recipes: newData, store: newData}))
+    .catch(error => alert(error))
+  }
+
   render() {
+    const {recipes} = this.state
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+        <List recipes={recipes} />
     );
   }
 }
