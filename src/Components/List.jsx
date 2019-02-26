@@ -6,10 +6,10 @@ const List = (props) =>{
   const{recipes} = props
   return(
   	<div>
-    	<div className="">
-	    	<div className="recipes_bg jumbotron jumbotron-fluid">
+    	<div className="recipes_bg">
+	    	<div className="bg jumbotron jumbotron-fluid">
 	    		<center>
-	    			<h1 className="display-4 facebookBlue">Search for your recipes here!</h1>
+	    			<h1 className="display-4">Search for your recipes here!</h1>
 	    		</center>
 	    	</div>
     	</div>
@@ -51,21 +51,20 @@ const List = (props) =>{
 			</div>
 			<div className="row" id="row" >
       		{recipes.map(recipe => (
-				<div className="col-md-4" key={recipe.recipe_id} id={recipe.recipe_id}>
+      			//replace below recipe.recipe_id
+				<div className="col-md-4" key={recipe.gender} id={recipe.gender}>
 					<div className="card">
-						<img className="card-img-top" src={recipe.image_url} alt="Finished Recipe"/>
-						<div className="card-body">
-							<h5 className="card-title text-center">{recipe.title}</h5>
-							<p className="card-text">Publisher: {recipe.publisher}</p>
-							<p className="card-text">Calories: {recipe.publisher_url}</p>
-							<p className="card-text">Cost: </p>
-							<form method="POST" action="" acceptCharset="UTF-8">
-								<input name="hidden" type="hidden" value=""/>
-								<button type="submit" className="btn btn-sm btn-success">View Instructions</button>
-							</form>
+						<img className="card-img-top" src="https://images.pexels.com/photos/1073772/pexels-photo-1073772.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Finished Recipe"/>
+						<div className="card-title">
+							<a href={recipe.gender}><h5 title="View how to make this meal" className="card-title">{recipe.gender} {recipe.login} {recipe.gender} {recipe.login} {recipe.gender} {recipe.login}</h5></a>
 						</div>
-						<div className="card-footer">
-							<small className="text-muted text-center">Rating: </small>
+						<div className="card-body">
+							<p title="Visit the publisher's page" className="card-text"><a className="notBlueLink" href={recipe.gender}>Publisher: {recipe.gender}</a></p>
+						</div>
+						<div className="card-footer row">
+							<div className="col-sm-7"><small title="Rating on food2fork.com" className="text-muted text-center col-sm-4">Rating: {recipe.gender}</small></div>
+							<div className="col-sm-2"><button title="Add to your favorites" className="btn btn-brand"><i className="fa fa-heart"></i></button></div>
+							<div className="col-sm-2"><button title="Add to your shopping cart" className="btn btn-brand"><i className="fa fa-shopping-basket"></i></button></div>
 						</div>
 					</div>
 				</div>
