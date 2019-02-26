@@ -6,12 +6,14 @@ const List = (props) =>{
   const{recipes} = props
   return(
   	<div>
-    	<div className="recipes"></div>
-    	<div className="jumbotron jumbotron-fluid">
-    		<center>
-    			<h1 className="display-5">Search for your recipes here!</h1>
-    		</center>
+    	<div className="">
+	    	<div className="recipes_bg jumbotron jumbotron-fluid">
+	    		<center>
+	    			<h1 className="display-4 facebookBlue">Search for your recipes here!</h1>
+	    		</center>
+	    	</div>
     	</div>
+    	{' '}
     	<div className="container">
 			<div className="container mb-4">
 				<div className="row">
@@ -40,24 +42,6 @@ const List = (props) =>{
 									<select>
 										<option>Relevence</option>
 										<option>Highest Rated</option>
-										<option>Calories Burned</option>
-										<option>Difficulty</option>
-									</select>
-								</div>
-							</div>
-						</form>
-					</div>
-					<div className="col-lg-3">
-						<form className="form-inline">
-							<div className="form-group row">
-								<div className="col-md-8">
-									<label htmlFor="results">Results Per Page: </label>
-								</div>
-								<div className="col-md-4">
-									<select>
-										<option>25</option>
-										<option>50</option>
-										<option>100</option>
 									</select>
 								</div>
 							</div>
@@ -67,14 +51,14 @@ const List = (props) =>{
 			</div>
 			<div className="row" id="row" >
       		{recipes.map(recipe => (
-				<div className="col-md-4">
+				<div className="col-md-4" key={recipe.recipe_id} id={recipe.recipe_id}>
 					<div className="card">
 						<img className="card-img-top" src={recipe.image_url} alt="Finished Recipe"/>
 						<div className="card-body">
 							<h5 className="card-title text-center">{recipe.title}</h5>
-							<p className="card-text text-center">Publisher: {recipe.publisher}</p>
-							<p className="card-text text-center">Calories: {recipe.f2f_url}</p>
-							<p className="card-text text-center">Cost: </p>
+							<p className="card-text">Publisher: {recipe.publisher}</p>
+							<p className="card-text">Calories: {recipe.publisher_url}</p>
+							<p className="card-text">Cost: </p>
 							<form method="POST" action="" acceptCharset="UTF-8">
 								<input name="hidden" type="hidden" value=""/>
 								<button type="submit" className="btn btn-sm btn-success">View Instructions</button>
