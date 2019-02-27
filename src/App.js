@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 // import the react-router-dom components
-import { Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import './App.css';
 import axios from 'axios'
 import List from "./Components/List.jsx"
@@ -46,7 +46,20 @@ class App extends Component {
   render() {
     const {recipes} = this.state
     return (
-        <List recipes={recipes} />
+      <BrowserRouter>
+        <Switch>
+          <Route exact path='/favorites' component={FavoritesPage} />
+          <Route exact path='/calendar' component={CalendarPage} />
+          <Route exact path='/login' component={LoginPage} />
+          <Route exact path='/register' component={RegisterPage} />
+          <Route exact path='/profile' component={UpdateProfilePage} />
+          <Route exact path='/cart' component={ShoppingCartPage} />
+          <Route
+            path='/'
+            render={(props) => <List {...props} recipes={recipes} />}
+          />
+        </Switch>
+      </BrowserRouter>
     );
   }
 }
