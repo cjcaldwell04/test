@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 // import the react-router-dom components
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
 import axios from 'axios'
-import List from "./Components/List.jsx"
-import HomePage from "./views/HomePage.jsx";
+import Recipes from "./Components/Recipes.jsx"
 import FavoritesPage from "./views/FavoritesPage.jsx";
 import CalendarPage from "./views/CalendarPage.jsx";
 import LoginPage from "./views/LoginPage.jsx";
@@ -47,18 +45,42 @@ class App extends Component {
     const {recipes} = this.state
     return (
       <BrowserRouter>
-        <Switch>
-          <Route exact path='/favorites' component={FavoritesPage} />
-          <Route exact path='/calendar' component={CalendarPage} />
-          <Route exact path='/login' component={LoginPage} />
-          <Route exact path='/register' component={RegisterPage} />
-          <Route exact path='/profile' component={UpdateProfilePage} />
-          <Route exact path='/cart' component={ShoppingCartPage} />
-          <Route
-            path='/'
-            render={(props) => <List {...props} recipes={recipes} />}
-          />
-        </Switch>
+        <div>
+          <nav className="navbar navbar-expand-md navbar-light navbar-laravel fixed-top " style={{marginBottom: 75 + "px"}}>
+              <div className="container">
+                  <a className="navbar-brand" href="{{ url('/') }}">Recipe Shopper</a>
+                  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                      <span className="navbar-toggler-icon"></span>
+                  </button>
+                  <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                      <ul className="navbar-nav navbar-center">
+                      </ul>
+                      <ul className="navbar-nav ml-auto">
+                        <li><a className="nav-link" href="/">Recipes</a></li>
+                        <li><a className="nav-link" href="/favorites">Favorites</a></li>
+                        <li><a className="nav-link" href="/calendar">Calendar</a></li>
+                        <li><a className="nav-link" href="/cart">Shopping Cart</a></li>
+                        <li><a className="nav-link" href="/profile">Account</a></li>
+                        <li><a className="nav-link" href="/login">Login</a></li>
+                        <li><a className="nav-link" href="/register">Register</a></li>
+                        <li><a className="nav-link" href="/">Logout</a></li>
+                      </ul>
+                  </div>
+              </div>
+          </nav>
+          <Switch>
+            <Route exact path='/favorites' component={FavoritesPage} />
+            <Route exact path='/calendar' component={CalendarPage} />
+            <Route exact path='/login' component={LoginPage} />
+            <Route exact path='/register' component={RegisterPage} />
+            <Route exact path='/profile' component={UpdateProfilePage} />
+            <Route exact path='/cart' component={ShoppingCartPage} />
+            <Route
+              path='/'
+              render={(props) => <Recipes {...props} recipes={recipes} />}
+            />
+          </Switch>
+        </div>
       </BrowserRouter>
     );
   }

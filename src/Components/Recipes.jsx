@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React from 'react';
 import LoadingHOC from './LoadingHOC';
 import '../App.css';
  
-const List = (props) =>{
+const Recipes = (props) =>{
   const{recipes} = props
   return(
   	<div>
@@ -15,7 +15,7 @@ const List = (props) =>{
     	</div>
     	{' '}
     	<div className="container mb-4">
-			<div className="row">
+			<div className="row" style={{marginBottom: 35 + "px"}}>
 				<div className="col-lg-5">
 					<form className="form-inline">
 						<div className="form-group row">
@@ -73,4 +73,4 @@ const List = (props) =>{
   )
 }
  
-export default LoadingHOC(List)
+export default LoadingHOC(Recipes)
